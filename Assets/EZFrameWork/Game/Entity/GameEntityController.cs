@@ -7,11 +7,6 @@ using EZFramework.Game.AI;
 namespace EZFramework.Game
 {
 
-    public enum EEntityControllerState
-    {
-        NEUTRAL, ACTION, MOVE_GRID, MOVE, MOVE_DIRECTION, ATTACK, PLAY_CARD, GAMEOVER
-    }
-
     public class GameEntityController : MonoBehaviour, IDisposable
 
     {
@@ -101,25 +96,7 @@ namespace EZFramework.Game
         /// <summary>
         /// プレイヤーコントローラーのステートが変更された時に呼ばれる。切り替わる直前に呼ばれる。引数は次のステート
         /// </summary>
-        public event Action<EEntityControllerState> onEntityStateChanged;
-
-        ///// <summary>
-        ///// The state of the  e player controller.
-        ///// </summary>
-        //EEntityControllerState _eEntityControllerState;
-
-        ///// <summary>
-        ///// プレイヤーコントローラーの現在のステート
-        ///// </summary>
-        //public EEntityControllerState EntityControllerState
-        //{
-        //    get { return _eEntityControllerState; }
-        //    set
-        //    {
-        //        _eEntityControllerState = value;
-        //        controllerStateMachine.ChangeState((int)value);
-        //    }
-        //}
+        public event Action<int> onEntityStateChanged;
 
         int _eEntityControllerState;
 
@@ -140,16 +117,8 @@ namespace EZFramework.Game
 
         public GameState GetControllerState(int controllerStateId) => controllerStateMachine.GetState(controllerStateId);
 
-        //public virtual void Init() { }
         public virtual void AddStates() { }
 
-
-
-
-        //   void Update()
-        //{
-        //       CurrentControllerState?.Update(Time.deltaTime);
-        //}
         #endregion
 
         #region AI
